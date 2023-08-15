@@ -12,10 +12,9 @@ import {
   ImageBackground,
   Alert,
 } from "react-native";
-import { auth, app } from "../../Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FontAwesome } from "@expo/vector-icons";
-
+import { auth } from "../../Firebase";
 export default function SignupScreen({ navigation }) {
   //Hooks
   const [Email, setEmail] = useState("");
@@ -23,25 +22,26 @@ export default function SignupScreen({ navigation }) {
   const [name, setName] = useState("");
   const [RepeatPass, setRPassword] = useState("");
 
-  const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, Email, Password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("this is ru,,", user.email);
-        Alert.alert("User Register Successfully", user.email);
-        if (user) {
-          navigation.navigate("Login");
-        }
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        Alert.alert( error.message)
-        // ..
-      });
-  };
+
+
+const  handleSignUp =()=>{
+createUserWithEmailAndPassword(auth, Email, Password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    if(user){
+      navigation.navigate("Login")
+    }
+
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    Alert.alert(errorMessage)
+    // ..
+  });
+}
   return (
     <ImageBackground
       style={styles.container}
@@ -131,7 +131,7 @@ export default function SignupScreen({ navigation }) {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.SignUpBtn} onPress={handleRegister}>
+          <TouchableOpacity style={styles.SignUpBtn}  onPress={handleSignUp}>
             <Text style={{ color: "#49688D", fontSize: 20 }}>Sign up</Text>
           </TouchableOpacity>
 

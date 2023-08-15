@@ -11,7 +11,8 @@ import {
   ImageBackground,
   Alert,
 } from "react-native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase";
 
 export default function LoginScreen({ navigation }) {
@@ -19,26 +20,23 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+const handleLogin = ()=>{
  
-  const handleLogin =()=>{
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       if(user){
-        console.warn("login Successfull")
         navigation.navigate("Home")
-      
       }
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      Alert.alert(error.message)
+      Alert.alert(errorMessage)
     });
   }
-
   return (
     <ImageBackground
       style={styles.container}
@@ -86,8 +84,7 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           <TouchableOpacity
-            style={styles.loginBtn}
-            onPress={handleLogin}
+            style={styles.loginBtn} onPress ={handleLogin}
           >
             <Text style={{ color: "#49688D", fontSize: 20 }}>Log in</Text>
           </TouchableOpacity>

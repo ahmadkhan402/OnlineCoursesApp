@@ -1,24 +1,18 @@
 // Import the functions you need from the SDKs you need
+import { getAuth } from "@firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAfRV5P9kD21gUHBr5gcuWKIoeFSm6WBd4",
-  authDomain: "meta-project-d3a67.firebaseapp.com",
-  projectId: "meta-project-d3a67",
-  storageBucket: "meta-project-d3a67.appspot.com",
-  messagingSenderId: "707553426822",
-  appId: "1:707553426822:web:b38b7c3875bcc9a4630007",
-  measurementId: "G-3E4EWY97QV"
+  apiKey: "AIzaSyCmt9rGCmYXjsNmE0SyIN-pW50bsclMLcc",
+  authDomain: "meta-projectfirebase.firebaseapp.com",
+  projectId: "meta-projectfirebase",
+  storageBucket: "meta-projectfirebase.appspot.com",
+  messagingSenderId: "737439106097",
+  appId: "1:737439106097:web:5c725af9f9f8f894390110",
+  measurementId: "G-H3951CFD8R"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 export {auth}
-export {app}

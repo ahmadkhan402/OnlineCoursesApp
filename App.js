@@ -7,13 +7,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignupScreen from './Component/Screen/SignupScreen';
 import HomeScreen from './Component/Screen/HomeScreen';
 import FrontPage from './Component/Screen/FrontPage';
+import PayrollScreen from './Component/Screen/PayrollScreen';
+import JavaScreen from './Component/ScreenOfCourse/JavaScreen';
+import PythonScreen from './Component/ScreenOfCourse/PythonScreen';
+import ReactScreen from './Component/ScreenOfCourse/ReactScreen';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
 
   
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='FrontPage'>
+    <Stack.Navigator initialRouteName='Home'>
+    <Stack.Screen name="payrol" component={PayrollScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="java" component={JavaScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="Python" component={PythonScreen}  options={{headerShown:false}}/>
+    <Stack.Screen name="react" component={ReactScreen} options={{headerShown:false}}/>
     <Stack.Screen name="FrontPage" component={FrontPage} options={{headerShown:false}}/>
     <Stack.Screen name="Home" component={HomeScreen}  options={{headerShown:false}}/>
       <Stack.Screen name="Login" component={LoginScreen}  options={{headerShown:false}}/>
