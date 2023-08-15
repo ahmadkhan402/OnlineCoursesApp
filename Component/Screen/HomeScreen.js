@@ -30,6 +30,9 @@ const HomeScreen = ({ navigation }) => {
       <StatusBar style="auto" />
       <View style={styles.header}>
         <Ionicons name="ios-menu" size={30} color="black" />
+        <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
+          <Image style={{width:50,height:50}} source={ require("../../assets/svg.png")}/>
+        </TouchableOpacity>
       </View>
       <ScrollView>
         {/* Hero Section */}
