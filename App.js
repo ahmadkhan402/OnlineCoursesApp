@@ -12,6 +12,7 @@ import JavaScreen from './Component/ScreenOfCourse/JavaScreen';
 import PythonScreen from './Component/ScreenOfCourse/PythonScreen';
 import ReactScreen from './Component/ScreenOfCourse/ReactScreen';
 import ProfileScreen from './Component/Screen/ProfileScreen';
+import EditProfile from './Component/Screen/EditProfile';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
@@ -20,6 +21,7 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator initialRouteName='FrontPage'>
     <Stack.Screen name="payrol" component={PayrollScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown:false}}/>
     <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}/>
     <Stack.Screen name="java" component={JavaScreen} options={{headerShown:false}}/>
     <Stack.Screen name="Python" component={PythonScreen}  options={{headerShown:false}}/>

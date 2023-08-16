@@ -4,31 +4,15 @@ import * as ImagePicker from "expo-image-picker";
 import { AntDesign } from '@expo/vector-icons';
 import { ImageBackground } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileScreen = () => {
   const [image, setImage] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleImagePicker = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All, // We can  specify whether we need only Images or Videos
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1, // 0 means compress for small size, 1 means  compress for maximum quality
-    });
-
-    console.log(result.assets[0].uri);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-      //   const response = await fetch(result.assets[0].uri);
-      //   const blob = await response.blob();
-      //   setblob(blob)
-    }
-  };
-
  
+ const navigation = useNavigation()
 
   return (
     <ImageBackground
@@ -38,7 +22,7 @@ const ProfileScreen = () => {
       <View
         style={{
           justifyContent: "center",
-          marginHorizontal: "5%",
+          marginHorizontal: "9%",
           marginTop: "20%",
         }}
       >
@@ -48,13 +32,13 @@ const ProfileScreen = () => {
         <Text style={{ color: "#fff", fontSize: 17, fontWeight: "300" }}>
           ahmadsafiullah@gmail.com
         </Text>
-        <TouchableOpacity style={styles.editbtn}  >
+        <TouchableOpacity style={styles.editbtn} onPress={()=>navigation.navigate("EditProfile")} >
             <Text style={{ color: "#49688D", fontSize: 15 }}>Edit Profile</Text>
           </TouchableOpacity>
       </View>
-      <View style={{ marginLeft: "63%"}}>
+      <View style={{ marginLeft: "50%",marginVertical:"19%"}}>
         <Image
-          source={require("../../assets/python.webp")}
+          source={require("../../assets/svg.png")}
           style={styles.image}
         />
       </View>
@@ -114,12 +98,12 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignContent:"center",
     alignSelf:"center",
-    marginVertical:"30%"
+    marginVertical:"8%"
   },
 
 editbtn: {
     marginTop: 30,
-    width: "30%",
+    width: "35%",
     borderRadius: 31,
     height: 50,
     alignItems: "center",

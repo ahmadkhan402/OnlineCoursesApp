@@ -16,7 +16,7 @@ const FrontPage = () => {
    
         <Text style={{fontSize:40, fontWeight:500,color:"#e38c10"}}>Meta <Text style={{color:"#c7514a",fontSize:10}}>System</Text></Text>
         
-        <Text style={{fontSize:37, fontWeight:300,color:"#6C95C6",textAlign:"center",}}>Find the Perfect Online Course for You</Text>
+        <Text style={{fontSize:32, fontWeight:300,color:"#6C95C6",textAlign:"center",}}>Find the Perfect Online Course for You</Text>
         <Text style={{fontSize:15, fontWeight:300,color:"#6C95C6",textAlign:"center",}}> Our online tutoring program uses a flexible approach to developed skill based on individual talents</Text>
     </View>
     <View style={{paddingVertical:"5%"}}>
@@ -42,10 +42,10 @@ export default FrontPage
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
   },
   textfield: {
+    marginVertical:"12%",
     marginHorizontal: "6%",
     justifyContent: "center",
     alignItems: "center",
