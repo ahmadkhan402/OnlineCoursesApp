@@ -4,7 +4,9 @@ import {  TouchableRipple } from 'react-native-paper';
 import { ImageBackground } from 'react-native'
 import LottieView from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import { width } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+import { Image } from 'react-native';
+import { colorbg } from '../../DataBase';
 const FrontPage = () => {
   const navigation = useNavigation()
   return (
@@ -13,14 +15,14 @@ const FrontPage = () => {
     source={require("./../../assets/bg2.png")}>
     <StatusBar style="auto" />
     <View style={styles.textfield}>
-   
-        <Text style={{fontSize:40, fontWeight:500,color:"#e38c10"}}>Meta <Text style={{color:"#c7514a",fontSize:10}}>System</Text></Text>
-        
-        <Text style={{fontSize:32, fontWeight:300,color:"#6C95C6",textAlign:"center",}}>Find the Perfect Online Course for You</Text>
-        <Text style={{fontSize:15, fontWeight:300,color:"#6C95C6",textAlign:"center",}}> Our online tutoring program uses a flexible approach to developed skill based on individual talents</Text>
+   <Image style={{width:160,height:160}} source={require("./../../assets/logo.png")} />
+        {/* <Text style={{fontSize:40, fontWeight:500,color:"#e38c10"}}>Meta <Text style={{color:"#c7514a",fontSize:10}}>System</Text></Text>
+         */}
+        <Text style={{fontSize:32, fontWeight:"400",color:colorbg.bgdarkpro ,textAlign:"center",}}>Find the Perfect Online Course for You</Text>
+        <Text style={{fontSize:12, fontWeight:"100",color:"#6C95C6",textAlign:"center",}}> Our online tutoring program uses a flexible approach to developed skill based on individual talents</Text>
     </View>
-    <View style={{paddingVertical:"5%"}}>
-    <LottieView style={{width:300,height:300}} source={require('../../assets/l2.json')} autoPlay loop />
+    <View style={{paddingVertical:"1%"}}>
+    <LottieView style={{width:210,height:210, }} source={require('../../assets/l2.json')} autoPlay loop />
     </View>
     <View >
     <TouchableOpacity
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textfield: {
-    marginVertical:"12%",
+    marginVertical:"9%",
     marginHorizontal: "6%",
     justifyContent: "center",
     alignItems: "center",
@@ -53,11 +55,12 @@ const styles = StyleSheet.create({
   },
   Btn:{
     width: "80%",
+    marginTop:60,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#B7D0F1",
+    backgroundColor: colorbg.bgdarkpro,
     elevation: 40,
     paddingHorizontal:"15%" 
   }

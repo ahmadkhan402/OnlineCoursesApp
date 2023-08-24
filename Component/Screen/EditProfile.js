@@ -3,7 +3,7 @@ import { View, Text, Button, TextInput, Image, TouchableOpacity } from 'react-na
 import * as ImagePicker from 'expo-image-picker';
 import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { auth } from '../../Firebase';
+import { db, storage } from '../../Firebase';
 
 
 const EditProfile = () => {
@@ -13,8 +13,6 @@ const EditProfile = () => {
 
   useEffect(() => {
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-
     // Request permission for image picker
     (async () => {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -32,23 +30,25 @@ const EditProfile = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      console.log("this is image link",result[0].uri)
-      setImage(result[0].uri);
+    if (!result.canceled) {
+      console.log("this is image link",result.assets[0].uri)
+      setImage(result.assets[0].uri);
     }
   };
 
   const saveDataToFirebase = async () => {
-    const storage = getStorage();
-    const db = getFirestore();
-
+   
     // Upload image to Firebase Storage
     const imageRef = ref(storage, 'profile_images/' + Date.now() + '.jpg');
-    await uploadString(imageRef, image, 'data_url');
+    await uploadString(imageRef, 'data_url').then((snapshot) => {
+      console.log(snapshot.metadata)
+      console.log('Uploaded a raw string!');
+    });
+
 
     // Get download URL
     const imageUrl = await getDownloadURL(imageRef);
-
+      console.log("this is image url",imageUrl)
     // Save user data to Firestore
     const userRef = doc(db, 'users', phoneNumber);
     await setDoc(userRef, {

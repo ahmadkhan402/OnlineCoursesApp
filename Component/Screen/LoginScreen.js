@@ -12,13 +12,29 @@ import {
   Alert,
 } from "react-native";
 
-import {  signInWithEmailAndPassword } from "firebase/auth";
+import {updatePassword,  getASecureRandomPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase";
+import { colorbg } from "../../DataBase";
 
 export default function LoginScreen({ navigation }) {
   //Hooks
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+ const handleForgetPassword =()=>{
+
+sendPasswordResetEmail(auth, email)
+  .then(() => {
+    // Password reset email sent!
+    Alert.alert("Password Reset Link is Send Successfully")
+    // ..
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+ }
 
 const handleLogin = ()=>{
  
@@ -91,7 +107,7 @@ const handleLogin = ()=>{
 
           <TouchableOpacity
             style={{ marginTop: "4%" }}
-            onPress={() => handleForgetPassword()}
+            onPress={handleForgetPassword}
           >
             <Text style={styles.forgot_button}>Forgot Password?</Text>
           </TouchableOpacity>
@@ -117,7 +133,7 @@ const handleLogin = ()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colorbg.bgdarkpro,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -153,7 +169,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: colorbg.bgdarkpro,
     elevation: 40,
     paddingHorizontal:"30%" 
   },
@@ -166,7 +182,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal:"15%",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: colorbg.bgdarkpro,
     elevation: 40,
   },
 

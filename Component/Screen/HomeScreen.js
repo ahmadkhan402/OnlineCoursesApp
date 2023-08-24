@@ -14,9 +14,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { SliderBox } from "react-native-image-slider-box";
 import Card from "./Card";
 import { ImageBackground } from "react-native";
-import HorizantalCardView from "./HorizantalCardView";
 import SearchbarScreen from "./SearchbarScreen";
 import HorizontalScrollList from "./HorizontalScrollList";
+import { colorbg } from "../../DataBase";
 const HomeScreen = ({ navigation }) => {
   const images = [
     require("../../assets/p1.jpg"),
@@ -124,7 +124,7 @@ const HomeScreen = ({ navigation }) => {
 
           <TouchableOpacity
             style={styles.enrollButton}
-            onPress={() => navigation.navigate("Payrol")}
+            onPress={() => navigation.navigate("pay")}
           >
             <Text style={styles.enrollButtonText}>Enroll Now</Text>
           </TouchableOpacity>
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    marginTop: "3%",
+    backgroundColor:colorbg.bgLiteDark
   },
   logo: {
     width: 100,
@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginTop: 16,
+   paddingHorizontal: 16,
   },
   courseHighlights: {
     marginVertical: 16,

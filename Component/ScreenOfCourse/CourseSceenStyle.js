@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { colorbg } from '../../DataBase'
 
 const CourseSceenStyle = ({title,ImageSource,discription,price}) => {
     const navigation = useNavigation()
@@ -26,7 +27,7 @@ const CourseSceenStyle = ({title,ImageSource,discription,price}) => {
           style={styles.loginBtn}
           onPress={()=>navigation.navigate("payrol")}
         >
-          <Text style={{ color: "#49688D", fontSize: 20 }}>Register</Text>
+          <Text style={{ color: "#fff", fontSize: 20 }}>Register</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         flexDirection:"column"
     },
     Title:{
-        color:"#49688D",
+        color:"black",
     fontSize: 27,
     fontWeight: 'bold',
   
@@ -55,14 +56,14 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#e8f2fd",
+        backgroundColor: colorbg.bgdarkpro,
         elevation:15,
         paddingHorizontal:"5%" 
       },
     Content:{
        
         flex:1,
-        backgroundColor:"#e8f2fd",
+        backgroundColor:colorbg.bgLiteDark,
         borderTopWidth:1,
         borderWidth:1,
         borderTopLeftRadius:40,
@@ -71,10 +72,11 @@ const styles = StyleSheet.create({
         marginTop:"74%"
     },
     discription:{
-        paddingVertical:"5%",
-        fontSize:20,
-        color:"#6C95C6",
-        textAlign:"justify"
+        paddingVertical:"6%",
+        fontSize:25,
+        color:"#49688D",
+        fontWeight:"100",
+        textAlign:"left"
 
     },
     ImageSource:{

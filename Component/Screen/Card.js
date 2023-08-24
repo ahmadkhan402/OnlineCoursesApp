@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import { AntDesign } from '@expo/vector-icons'; 
+import { colorbg } from '../../DataBase';
 
 const Card = ({ title, description, imageSource }) => {
   return (
@@ -29,7 +30,7 @@ const Card = ({ title, description, imageSource }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#B7D0F1',
+    backgroundColor: colorbg.bgLiteDark,
     borderRadius: 8,
     shadowColor: '#fff',
     shadowRadius: 2,
@@ -46,17 +47,18 @@ const styles = StyleSheet.create({
    
   },
   enrollButton: {
-    backgroundColor: "#e8f2fd",
+    backgroundColor: colorbg.bgdarkpro,
     paddingVertical: 6,
     paddingHorizontal: 15,
     marginHorizontal:5,
     marginVertical:5,
     borderRadius:10,
+    elevation:22,
     alignSelf: 'flex-end',
   },
   enrollButtonText: {
     fontSize:13,
-    color: "#49688D",
+    color: "#fff",
     fontWeight: '400',},
   cardImage: {
     flex:0.5,

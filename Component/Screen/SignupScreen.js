@@ -14,7 +14,10 @@ import {
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FontAwesome } from "@expo/vector-icons";
-import { auth } from "../../Firebase";
+import {  auth} from "../../Firebase";
+import { colorbg } from "../../DataBase"; 
+
+
 export default function SignupScreen({ navigation }) {
   //Hooks
   const [Email, setEmail] = useState("");
@@ -22,6 +25,25 @@ export default function SignupScreen({ navigation }) {
   const [name, setName] = useState("");
   const [RepeatPass, setRPassword] = useState("");
 
+
+  // const handleGoogleLogin = (response)=>{
+  //     // Build Firebase credential with the Google ID token.
+  //     const idToken = response.credential;
+  //     const credential = GoogleAuthProvider.credential(idToken);
+    
+  //     // Sign in with credential from the Google user.
+  //     signInWithCredential(auth, credential).catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = errormessage;
+  //       // The email of the user's account used.
+  //       const email = error.email;
+  //       // The credential that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+    
+  // }
 
 
 const  handleSignUp =()=>{
@@ -112,7 +134,7 @@ createUserWithEmailAndPassword(auth, Email, Password)
               alignItems: "center",
             }}
           >
-            <TouchableOpacity style={{ paddingLeft: "8%" }}>
+            <TouchableOpacity style={{ paddingLeft: "8%" }} >
               <Image
                 style={{ width: 31, height: 31 }}
                 source={require("../../assets/google.png")}
@@ -149,7 +171,7 @@ createUserWithEmailAndPassword(auth, Email, Password)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colorbg.bgdarkpro,
     justifyContent:"center",
   },
   miniContainer: {
@@ -183,7 +205,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: colorbg.bgdarkpro,
     elevation: 40,
     paddingHorizontal: "10%",
   },

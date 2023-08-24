@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import { colorbg } from '../../DataBase';
 
 const SearchbarScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -13,11 +14,11 @@ const SearchbarScreen = () => {
       placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchQuery}
-      color="#6C95C6"
-      style={{width:"90%",backgroundColor:"#e8f2fd"}}
-      placeholderTextColor="#6C95C6"
-      textColor="#6C95C6"
-      iconColor="#6C95C6"
+      color="#fff"
+      style={{width:"90%",backgroundColor:colorbg.bgLiteDark}}
+      placeholderTextColor="#fff"
+      textColor="#fff"
+      iconColor="#fff"
       
     />
 
