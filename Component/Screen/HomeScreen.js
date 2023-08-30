@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
   ScrollView,
+  Button,
   TextInput,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,21 +18,56 @@ import { ImageBackground } from "react-native";
 import SearchbarScreen from "./SearchbarScreen";
 import HorizontalScrollList from "./HorizontalScrollList";
 import { colorbg } from "../../DataBase";
+import { Linking} from 'react-native'
 const HomeScreen = ({ navigation }) => {
+  const [linkValid, setLinkValid] = useState(true);
+  const [lectureDuration, setLectureDuration] = useState(0);
   const images = [
     require("../../assets/p1.jpg"),
     require("../../assets/web.webp"),
     require("../../assets/p1.jpg"),
     require("../../assets/python.webp"),
   ];
+
+  const url = "https://youtu.be/91V_KQ_GRg4";
+
+  // const OpenURLButton = ({ url ,children}) => {
+  //   const handlePress = useCallback(async () => {
+  //     // Checking if the link is supported for links with custom URL scheme.
+  //     const supported = await Linking.canOpenURL(url);
+
+  //     if (supported) {
+  //       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+  //       // by some browser in the mobile
+  //       await Linking.openURL(url);
+  //     } else {
+  //       Alert.alert(`Don't know how to open this URL: ${url}`);
+  //     }
+  //   }, [url]);
+  //   return <Button title={children} onPress={handlePress} />;
+  // };
+
+  useEffect(() => {
+    if (linkValid) {
+      const timer = setTimeout(() => {
+        setLinkValid(false);
+      }, 3600000);
+      return () => clearTimeout(timer);
+    }
+  }, [linkValid]);
+
+ 
   return (
     <ImageBackground source={require("../../assets/bg2.png")}>
       {/* Header */}
       <StatusBar style="auto" />
       <View style={styles.header}>
         <Ionicons name="ios-menu" size={30} color="black" />
-        <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
-          <Image style={{width:50,height:50}} source={ require("../../assets/svg.png")}/>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={require("../../assets/svg.png")}
+          />
         </TouchableOpacity>
       </View>
       <ScrollView>
@@ -84,18 +120,24 @@ const HomeScreen = ({ navigation }) => {
           <SearchbarScreen />
         </View>
 
-
         {/* HorizontalScrollList */}
-<View style={{marginTop:"3%"}}>
-<Text style={{ color:"#49688D",  paddingHorizontal: 16,  fontSize: 15, fontWeight: "700" }}>
+        <View style={{ marginTop: "3%" }}>
+          <Text
+            style={{
+              color: "#49688D",
+              paddingHorizontal: 16,
+              fontSize: 15,
+              fontWeight: "700",
+            }}
+          >
             Recomended Courses
           </Text>
-        <HorizontalScrollList/>
+          <HorizontalScrollList />
         </View>
         {/* Course Highlights */}
 
         <View style={styles.courseHighlights}>
-          <Text style={{   color:"#49688D",fontSize: 15, fontWeight: "700" }}>
+          <Text style={{ color: "#49688D", fontSize: 15, fontWeight: "700" }}>
             Featured Courses
           </Text>
           <ScrollView>
@@ -122,13 +164,35 @@ const HomeScreen = ({ navigation }) => {
             {/* Add more cards here */}
           </ScrollView>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.enrollButton}
             onPress={() => navigation.navigate("pay")}
           >
             <Text style={styles.enrollButtonText}>Enroll Now</Text>
           </TouchableOpacity>
+           */}
         </View>
+
+        <Text style={styles.heroText}>Get Online Lecture</Text>
+        <View style={styles.LectCard}>
+        <View>
+          <Image style={{width:50, height:50}} source={require("../../assets/vlogo.png")}/>
+        </View>
+        <View style={{paddingHorizontal:18}}>
+          <Text style={{fontSize: 15, fontWeight: "400" }}>Lecture Screen</Text>
+          <Text style={{ color: "#49688D", fontSize: 15, fontWeight: "400" ,paddingVertical:10 }}>
+           Link will disabled in 1 hours
+          </Text>
+          </View>
+          </View>
+          {linkValid ?
+          <TouchableOpacity style={styles.WatchBtn} onPress={()=> Linking.openURL(url)}>
+            <Text>Watch lecture </Text>
+          </TouchableOpacity>
+          : <Text style={{color:"red"}}> The link is expired</Text>
+
+          }
+        
 
         {/* About the Institute */}
         <View style={styles.about}>
@@ -162,12 +226,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    backgroundColor:colorbg.bgLiteDark
+    backgroundColor: colorbg.bgLiteDark,
   },
   logo: {
     width: 100,
     height: 40,
     resizeMode: "contain",
+  },
+  WatchBtn: {
+    width: "100%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colorbg.bgdarkpro,
+    elevation: 40,
+    paddingHorizontal:"30%" 
   },
   hero: {
     justifyContent: "center",
@@ -178,11 +252,21 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: "cover",
   },
+  LectCard:{
+    paddingHorizontal: 16, flexDirection:"row" , marginTop:7,
+    backgroundColor:colorbg.bgLiteDark,
+    marginHorizontal:16,
+    padding:10,
+    marginBottom:5,
+    borderTopLeftRadius:16,
+    borderTopRightRadius:16
+
+  },
   heroText: {
     fontSize: 24,
     fontWeight: "bold",
     marginTop: 16,
-   paddingHorizontal: 16,
+    paddingHorizontal: 16,
   },
   courseHighlights: {
     marginVertical: 16,

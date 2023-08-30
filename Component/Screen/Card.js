@@ -3,8 +3,10 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import { AntDesign } from '@expo/vector-icons'; 
 import { colorbg } from '../../DataBase';
+import { useNavigation } from '@react-navigation/native';
 
 const Card = ({ title, description, imageSource }) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.card}>
       <Image source={imageSource} style={styles.cardImage} />
@@ -20,7 +22,7 @@ const Card = ({ title, description, imageSource }) => {
         containerStyle={styles.ratingContainer}
         
       />
-            <TouchableOpacity style={styles.enrollButton} >
+            <TouchableOpacity style={styles.enrollButton} onPress={()=> navigation.navigate('LectureScreen')}>
         <Text style={styles.enrollButtonText}>Enroll</Text>
       </TouchableOpacity>
       </View>

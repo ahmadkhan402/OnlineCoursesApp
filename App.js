@@ -15,6 +15,7 @@ import ProfileScreen from './Component/Screen/ProfileScreen';
 import EditProfile from './Component/Screen/EditProfile';
 import PaymentScreen from './Component/PaymentScreen';
 import Payment from './Component/Payment';
+import LectureScreenStyle from './Component/LectureScreen/LectureScreenStyle';
 
 
 export default function App() {
@@ -23,7 +24,9 @@ export default function App() {
 
     
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='Login'>
+    <Stack.Navigator initialRouteName='LectureScreen'>
+    
+    <Stack.Screen name="LectureScreen" component={LectureScreenStyle} options={{headerShown:false}}/>
     <Stack.Screen name="pay" component={Payment} options={{headerShown:false}}/>
     <Stack.Screen name="payrol" component={PayrollScreen} options={{headerShown:false}}/>
     <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown:false}}/>
