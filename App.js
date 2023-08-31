@@ -16,6 +16,11 @@ import EditProfile from './Component/Screen/EditProfile';
 import PaymentScreen from './Component/PaymentScreen';
 import Payment from './Component/Payment';
 import LectureScreenStyle from './Component/LectureScreen/LectureScreenStyle';
+import JavaLectureSceen from './Component/LectureScreen/JavaLectureSceen';
+import PythonLectureScreen from './Component/LectureScreen/PythonLectureScreen';
+import JavaScriptLectureScreen from './Component/LectureScreen/JavaScriptLectureScreen';
+import ReactNativeLectureScreen from './Component/LectureScreen/ReactNativeLectureScreen';
+import SelectCourseScreen from './Component/Screen/SelectCourseScreen';
 
 
 export default function App() {
@@ -24,10 +29,13 @@ export default function App() {
 
     
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='LectureScreen'>
-    
-    <Stack.Screen name="LectureScreen" component={LectureScreenStyle} options={{headerShown:false}}/>
-    <Stack.Screen name="pay" component={Payment} options={{headerShown:false}}/>
+    <Stack.Navigator initialRouteName='selectLecture'>
+    <Stack.Screen name="selectLecture" component={SelectCourseScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="LecReact" component={ReactNativeLectureScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="LecPython" component={PythonLectureScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="LecJava" component={JavaLectureSceen} options={{headerShown:false}}/>
+    <Stack.Screen name="LecJavaScript" component={JavaScriptLectureScreen} options={{headerShown:false}}/>
+   <Stack.Screen name="pay" component={Payment} options={{headerShown:false}}/>
     <Stack.Screen name="payrol" component={PayrollScreen} options={{headerShown:false}}/>
     <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown:false}}/>
     <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}/>

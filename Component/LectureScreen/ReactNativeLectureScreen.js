@@ -1,13 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import LectureScreenStyle from './LectureScreenStyle'
-
-const JavaLectureSceen = () => {
+const ReactNativeLectureScreen = () => {
   return (
-   <LectureScreenStyle image = {{uri:"https://www.oracle.com/a/tech/img/rc10-java-badge-3.png"}} name="Java"/> 
+    <LectureScreenStyle image = {require("./../../assets/r.png")} name="React Native"/> 
   )
 }
 
-export default JavaLectureSceen
+export default ReactNativeLectureScreen
 
 const styles = StyleSheet.create({})
