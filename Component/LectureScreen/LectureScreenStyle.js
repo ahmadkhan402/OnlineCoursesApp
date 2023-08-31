@@ -7,8 +7,10 @@ import { auth } from "../../Firebase";
 import { ScrollView } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { AntDesign,Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const LectureScreenStyle = ({ image , name}) => {
+  const navigation = useNavigation()
   const [isDropdownOpenWeek1, setIsDropdownOpenweek1] = useState(false);
   const [isDropdownOpenWeek2, setIsDropdownOpenweek2] = useState(false);
   const [isDropdownOpenWeek3, setIsDropdownOpenweek3] = useState(false);

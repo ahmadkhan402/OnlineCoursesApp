@@ -29,7 +29,7 @@ export default function App() {
 
     
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='selectLecture'>
+    <Stack.Navigator initialRouteName='FrontPage'>
     <Stack.Screen name="selectLecture" component={SelectCourseScreen} options={{headerShown:false}}/>
     <Stack.Screen name="LecReact" component={ReactNativeLectureScreen} options={{headerShown:false}}/>
     <Stack.Screen name="LecPython" component={PythonLectureScreen} options={{headerShown:false}}/>

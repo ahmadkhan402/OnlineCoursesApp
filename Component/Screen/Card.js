@@ -22,7 +22,7 @@ const Card = ({ title, description, imageSource }) => {
         containerStyle={styles.ratingContainer}
         
       />
-            <TouchableOpacity style={styles.enrollButton} onPress={()=> navigation.navigate('LectureScreen')}>
+            <TouchableOpacity style={styles.enrollButton} onPress={()=> navigation.navigate('pay')}>
         <Text style={styles.enrollButtonText}>Enroll</Text>
       </TouchableOpacity>
       </View>

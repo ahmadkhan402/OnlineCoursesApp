@@ -29,6 +29,7 @@ export default function Payment({ navigation }) {
   const [Blob, setblob] = useState(null);
   const [result, setResult] = useState("");
   const [blobData, setBlobData] = useState(null);
+  const [DisableButton, setDisableButton] = useState(true);
 
   const getTxID = () => {
     let x = "TX" + Date.now();
@@ -44,6 +45,7 @@ export default function Payment({ navigation }) {
       txId,
     });
     Alert.alert("Data Successfully Store in Firebase/Firestore");
+    navigation.navigate("selectLecture")
   };
 
   return (
@@ -186,6 +188,7 @@ export default function Payment({ navigation }) {
           {image && <Image source={{ uri: image }} style={styles.image} />}
 
           {/* Payment Button */}
+
           <TouchableOpacity
             onPress={SaveDataToFirestore}
             style={styles.loginBtn}
