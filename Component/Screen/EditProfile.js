@@ -11,7 +11,7 @@ import { colorbg } from '../../DataBase';
 const EditProfile = ({navigation}) => {
   const [displayName, setDisplayName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [image, setImage] = useState("");
+  const [imageX, setImage] = useState("");
   const [BlobImage, setBlobImage] = useState('');
   const [ImageUrl, setImageUrl] = useState('');
 
@@ -68,9 +68,7 @@ const EditProfile = ({navigation}) => {
 const metadata = {
   contentType: 'image/jpeg'
 };
-
-
-  console.log("this is blob image", BlobImage)
+console.log("this is blob image", BlobImage)
 // Upload file and metadata to the object 'images/mountains.jpg'
 const storageRef = ref(storage, 'Profile_images/' + Date.now());
 const uploadTask = uploadBytesResumable(storageRef, BlobImage, metadata);
@@ -143,8 +141,8 @@ uploadTask.on('state_changed',
     <ImageBackground source={require("../../assets/bg2.png")} style={{ flex: 1 , justifyContent:"center", alignItems:"center"}}>
       <View>
       <View>
-        {image ? (
-          <Image source={{ uri: image }} style={{ width: 200, height: 200, borderRadius: 100 }} />
+        {imageX ? (
+          <Image source={{ uri: imageX }} style={{ width: 200, height: 200, borderRadius: 100 }} />
         ) : (
           <View>
           <Image source={{ uri: "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" }} style={{ width: 200, height: 200, borderRadius: 100 }} />
@@ -173,7 +171,7 @@ uploadTask.on('state_changed',
          />
          </View>
          <TouchableOpacity style={styles.loginBtn} onPress ={saveDataToFirebase}>
-            <Text style={{ color: "#fff", fontSize: 20 }}>Log in</Text>
+            <Text style={{ color: "#fff", fontSize: 20 }}>Save</Text>
           </TouchableOpacity>
       
       

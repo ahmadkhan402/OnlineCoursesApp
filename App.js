@@ -7,13 +7,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignupScreen from './Component/Screen/SignupScreen';
 import HomeScreen from './Component/Screen/HomeScreen';
 import FrontPage from './Component/Screen/FrontPage';
-import PayrollScreen from './Component/Screen/PayrollScreen';
 import JavaScreen from './Component/ScreenOfCourse/JavaScreen';
 import PythonScreen from './Component/ScreenOfCourse/PythonScreen';
 import ReactScreen from './Component/ScreenOfCourse/ReactScreen';
 import ProfileScreen from './Component/Screen/ProfileScreen';
 import EditProfile from './Component/Screen/EditProfile';
-import PaymentScreen from './Component/PaymentScreen';
 import Payment from './Component/Payment';
 import LectureScreenStyle from './Component/LectureScreen/LectureScreenStyle';
 import JavaLectureSceen from './Component/LectureScreen/JavaLectureSceen';
@@ -21,23 +19,27 @@ import PythonLectureScreen from './Component/LectureScreen/PythonLectureScreen';
 import JavaScriptLectureScreen from './Component/LectureScreen/JavaScriptLectureScreen';
 import ReactNativeLectureScreen from './Component/LectureScreen/ReactNativeLectureScreen';
 import SelectCourseScreen from './Component/Screen/SelectCourseScreen';
+import CertificatePaySCreen from './Component/LectureScreen/CertificatePaySCreen';
+import CertificateScreen from './Component/LectureScreen/CertificateScreen';
+import Programing from './Component/Lecture/Programing';
 
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-
     
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='FrontPage'>
+    <Stack.Navigator initialRouteName='selectLecture'>
+    <Stack.Screen name="ProgramLec" component={Programing} options={{headerShown:false}}/>
+    <Stack.Screen name="CertificateScreen" component={CertificateScreen} options={{headerShown:false}}/>
+    <Stack.Screen name="PayCertificate" component={CertificatePaySCreen} options={{headerShown:false}}/>
     <Stack.Screen name="selectLecture" component={SelectCourseScreen} options={{headerShown:false}}/>
     <Stack.Screen name="LecReact" component={ReactNativeLectureScreen} options={{headerShown:false}}/>
     <Stack.Screen name="LecPython" component={PythonLectureScreen} options={{headerShown:false}}/>
     <Stack.Screen name="LecJava" component={JavaLectureSceen} options={{headerShown:false}}/>
     <Stack.Screen name="LecJavaScript" component={JavaScriptLectureScreen} options={{headerShown:false}}/>
    <Stack.Screen name="pay" component={Payment} options={{headerShown:false}}/>
-    <Stack.Screen name="payrol" component={PayrollScreen} options={{headerShown:false}}/>
-    <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown:false}}/>
+     <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown:false}}/>
     <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}/>
     <Stack.Screen name="java" component={JavaScreen} options={{headerShown:false}}/>
     <Stack.Screen name="Python" component={PythonScreen}  options={{headerShown:false}}/>

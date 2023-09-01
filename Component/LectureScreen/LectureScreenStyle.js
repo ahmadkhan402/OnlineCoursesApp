@@ -8,6 +8,7 @@ import { ScrollView } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { AntDesign,Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Linking } from "react-native";
 
 const LectureScreenStyle = ({ image , name}) => {
   const navigation = useNavigation()
@@ -30,8 +31,10 @@ const LectureScreenStyle = ({ image , name}) => {
   const [button5Disabled, setButton5Disabled] = useState(false);
   const [button6Disabled, setButton6Disabled] = useState(false);
   const [button7Disabled, setButton7Disabled] = useState(false);
+  const [button8Disabled, setButton8Disabled] = useState(true);
 
 
+  
   const completeTask = (buttonNumber , text) => {
     switch (buttonNumber) {
       case 1:
@@ -63,8 +66,10 @@ const LectureScreenStyle = ({ image , name}) => {
           setCompleteText(text);
           break;
       default:
-        break;
+       
     }
+    
+    
   }
   const toggleDropdownWeek1 = () => {
     setIsDropdownOpenweek1(!isDropdownOpenWeek1);
@@ -87,6 +92,7 @@ const LectureScreenStyle = ({ image , name}) => {
   };
   const toggleDropdownWeek7 = () => {
     setIsDropdownOpenweek7(!isDropdownOpenWeek7);
+    
   };
 
   const handleComplete1 = () => {
@@ -130,6 +136,7 @@ const LectureScreenStyle = ({ image , name}) => {
       setCheckedLecture(false)
       setCheckedAssignment(false)
       setCheckedQuiz(false)
+    
     } else {
       showToast();
       function showToast() {
@@ -273,10 +280,12 @@ const LectureScreenStyle = ({ image , name}) => {
   };
 
   const handleQuiz = () => {};
-  const handleLecture = () => {};
+  const handleLecture = () => {
+    navigation.navigate("ProgramLec")
+  }
   const handleProject = () => {};
   const handleAssignment = () => {};
-  
+ var x =  button1Disabled && button2Disabled && button3Disabled && button4Disabled && button5Disabled && button6Disabled && button7Disabled
   return (
     <ImageBackground
       source={require("../../assets/bg2.png")}
@@ -995,6 +1004,21 @@ const LectureScreenStyle = ({ image , name}) => {
             </View>
           )}
         </TouchableOpacity>
+
+        <View style={{paddingHorizontal:16,marginVertical:16, justifyContent:"center", alignItems:"center"}}>
+          <Text style={styles.TextCertificate}>Get certificated</Text>
+          <Text style={styles.TextDis}>Pay the Required dues to get certificate</Text>
+          {x? 
+          <TouchableOpacity  style={styles.CerBtn} onPress={()=> navigation.navigate("PayCertificate")}>
+          <Text  style={{ color: "#fff", fontSize: 20 }}>Click to Apply</Text>
+          </TouchableOpacity>
+      :<TouchableOpacity disabled={button8Disabled} style={[styles.CerBtn ,button8Disabled && styles.DisableButton ]}>
+          <Text  style={{ color: "#fff", fontSize: 20 }}>Click to Apply</Text>
+          </TouchableOpacity>
+          }
+          
+          
+        </View>
       </ScrollView>
 
     </ImageBackground>
@@ -1002,6 +1026,26 @@ const LectureScreenStyle = ({ image , name}) => {
 };
 
 const styles = StyleSheet.create({
+  TextCertificate:{
+    color: "gold",
+    textShadowColor:'#585858',
+    textShadowOffset:{width: 4, height: 5},
+    textShadowRadius:10,
+    fontSize: 38,
+    fontWeight: "bold",
+    marginTop: 20,
+    paddingHorizontal: 16,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  TextDis:{
+    color: "#49688D",
+    paddingHorizontal: 14,
+    fontSize: 11,
+    fontWeight: "500",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
   ButtonStyle:{
     marginTop: 17,
     backgroundColor: colorbg.bgLiteDark,
@@ -1076,6 +1120,18 @@ const styles = StyleSheet.create({
     backgroundColor: colorbg.bgdarkpro,
     elevation: 40,
   },
+  CerBtn:{
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+    width: "70%",
+    borderRadius: 25,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colorbg.bgdarkpro,
+    elevation: 40,
+  }
 });
 
 export default LectureScreenStyle;

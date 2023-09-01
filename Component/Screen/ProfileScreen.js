@@ -10,14 +10,20 @@ import { Ionicons } from '@expo/vector-icons';
 import { auth, storage } from "../../Firebase";
 import {  ref, getDownloadURL } from "firebase/storage";
 import { updateEmail } from "@firebase/auth";
+import { useRoute } from '@react-navigation/native';
+
+
+// Use the useRoute hook to get access to the route prop
+
+
 
 
 const ProfileScreen = () => {
-
+  const route = useRoute(); 
   const [image, setImage] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  
+ 
 
  const handleEmailupdate =()=>{
 updateEmail(auth.currentUser, "pukhtoon403@gmail.com").then(() => {
@@ -34,36 +40,34 @@ updateEmail(auth.currentUser, "pukhtoon403@gmail.com").then(() => {
  const navigation = useNavigation()
  useEffect(() => {
   setEmail(auth.currentUser.email)
-   // Create a reference to the file we want to download
-
-//  const starsRef = ref(storage, 'profile_images/' + Date.now() + '.jpg');
+ const starsRef = ref(storage, 'profile_images/' + Date.now() + '.jpg');
  
-//  // Get the download URL
-//  getDownloadURL(starsRef)
-//    .then((url) => {
-//      setImage(url)
-//    })
-//    .catch((error) => {
-//      // A full list of error codes is available at
-//      // https://firebase.google.com/docs/storage/web/handle-errors
-//      switch (error.code) {
-//        case 'storage/object-not-found':
-//          // File doesn't exist
-//          break;
-//        case 'storage/unauthorized':
-//          // User doesn't have permission to access the object
-//          break;
-//        case 'storage/canceled':
-//          // User canceled the upload
-//          break;
+ // Get the download URL
+ getDownloadURL(starsRef)
+   .then((url) => {
+     setImage(url)
+   })
+   .catch((error) => {
+     // A full list of error codes is available at
+     // https://firebase.google.com/docs/storage/web/handle-errors
+     switch (error.code) {
+       case 'storage/object-not-found':
+         // File doesn't exist
+         break;
+       case 'storage/unauthorized':
+         // User doesn't have permission to access the object
+         break;
+       case 'storage/canceled':
+         // User canceled the upload
+         break;
  
-//        // ...
+       // ...
  
-//        case 'storage/unknown':
-//          // Unknown error occurred, inspect the server response
-//          break;
-//      }
-//    });
+       case 'storage/unknown':
+         // Unknown error occurred, inspect the server response
+         break;
+     }
+   });
   
 },[]);
 
@@ -100,6 +104,7 @@ console.log(image)
           </TouchableOpacity>
       </View>
       <View style={{ marginLeft: "50%",marginVertical:"19%"}}>
+     
         {/* <Image
           source={uri={image}}
           style={styles.image}

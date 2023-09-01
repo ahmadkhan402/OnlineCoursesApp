@@ -31,12 +31,108 @@ export default function Payment({ navigation }) {
   const [blobData, setBlobData] = useState(null);
   const [DisableButton, setDisableButton] = useState(true);
 
+  useEffect(() => {
+    // Initialize Firebase
+    // Request permission for image picker
+    (async () => {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission denied");
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      console.log("this is image link",result.assets[0].uri)
+      setImage(result.assets[0].uri);
+      const url = result.assets[0].uri
+      
+      
+      function urlToBlob(url) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.addEventListener('error', reject);
+          xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState === 4) {
+              resolve(xhr.response);
+            }
+          });
+          xhr.open('GET', url);
+          xhr.responseType = 'blob'; // convert type
+          xhr.send();
+        });
+      }
+      const blob = await urlToBlob(url);
+       setBlobData(blob)
+    }
+  
+  };
   const getTxID = () => {
     let x = "TX" + Date.now();
     setTxId(x);
     console.log(x);
   };
   const SaveDataToFirestore = async () => {
+     
+
+const metadata = {
+  contentType: 'image/jpeg'
+};
+console.log("this is blob image", blobData)
+// Upload file and metadata to the object 'images/mountains.jpg'
+const storageRef = ref(storage, 'Course_Pay_images/' + Date.now());
+const uploadTask = uploadBytesResumable(storageRef, blobData, metadata);
+
+// Listen for state changes, errors, and completion of the upload.
+uploadTask.on('state_changed',
+  (snapshot) => {
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    switch (snapshot.state) {
+      case 'paused':
+        console.log('Upload is paused');
+        break;
+      case 'running':
+        console.log('Upload is running');
+        break;
+    }
+  }, 
+  (error) => {
+    // A full list of error codes is available at
+    // https://firebase.google.com/docs/storage/web/handle-errors
+    switch (error.code) {
+      case 'storage/unauthorized':
+        // User doesn't have permission to access the object
+        break;
+      case 'storage/canceled':
+        // User canceled the upload
+        break;
+
+      // ...
+
+      case 'storage/unknown':
+        // Unknown error occurred, inspect error.serverResponse
+        break;
+    }
+  }, 
+  () => {
+    // Upload completed successfully, now we can get the download URL
+    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL);
+      setimageUrl(downloadURL)
+    });
+  }
+);
     const userRef = doc(db, "User_Paid", fullName);
     await setDoc(userRef, {
       fullName,
@@ -171,7 +267,7 @@ export default function Payment({ navigation }) {
               style={{ color: "grey", fontSize: 16, textAlign: "center" }}
             ></Text>
           </View>
-          <TouchableOpacity
+          <TouchableOpacity onPress={pickImage}
             style={[
               styles.UpBtn,
               { flexDirection: "row", justifyContent: "center" },
