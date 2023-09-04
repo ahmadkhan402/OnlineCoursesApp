@@ -13,7 +13,6 @@ import ReactScreen from './Component/ScreenOfCourse/ReactScreen';
 import ProfileScreen from './Component/Screen/ProfileScreen';
 import EditProfile from './Component/Screen/EditProfile';
 import Payment from './Component/Payment';
-import LectureScreenStyle from './Component/LectureScreen/LectureScreenStyle';
 import JavaLectureSceen from './Component/LectureScreen/JavaLectureSceen';
 import PythonLectureScreen from './Component/LectureScreen/PythonLectureScreen';
 import JavaScriptLectureScreen from './Component/LectureScreen/JavaScriptLectureScreen';
@@ -22,15 +21,17 @@ import SelectCourseScreen from './Component/Screen/SelectCourseScreen';
 import CertificatePaySCreen from './Component/LectureScreen/CertificatePaySCreen';
 import CertificateScreen from './Component/LectureScreen/CertificateScreen';
 import Programing from './Component/Lecture/Programing';
+import { ImageProvider } from './Component/Context/ImageProvider';
+import FirebaseScreen from './Component/ScreenOfCourse/FirebaseScreen';
 
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    
+    <ImageProvider>
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='selectLecture'>
-    <Stack.Screen name="ProgramLec" component={Programing} options={{headerShown:false}}/>
+    <Stack.Navigator initialRouteName='FrontPage'>
+   <Stack.Screen name="ProgramLec" component={Programing} options={{headerShown:false}}/>
     <Stack.Screen name="CertificateScreen" component={CertificateScreen} options={{headerShown:false}}/>
     <Stack.Screen name="PayCertificate" component={CertificatePaySCreen} options={{headerShown:false}}/>
     <Stack.Screen name="selectLecture" component={SelectCourseScreen} options={{headerShown:false}}/>
@@ -48,9 +49,11 @@ export default function App() {
     <Stack.Screen name="Home" component={HomeScreen}  options={{headerShown:false}}/>
       <Stack.Screen name="Login" component={LoginScreen}  options={{headerShown:false}}/>
       <Stack.Screen name="Create" component={SignupScreen}  options={{headerShown:false}}/>
+      <Stack.Screen name="firebase" component={FirebaseScreen}  options={{headerShown:false}}/>
+      
     </Stack.Navigator>
   </NavigationContainer>
-
+</ImageProvider>
   );
 }
 

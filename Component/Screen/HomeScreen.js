@@ -19,9 +19,13 @@ import SearchbarScreen from "./SearchbarScreen";
 import HorizontalScrollList from "./HorizontalScrollList";
 import { colorbg } from "../../DataBase";
 import { Linking} from 'react-native'
+import { useImage } from "../Context/ImageProvider";
+import AdminAbout from "./AdminAbout";
 const HomeScreen = ({ navigation }) => {
   const [linkValid, setLinkValid] = useState(true);
   const [lectureDuration, setLectureDuration] = useState(0);
+
+ const {imageUrl} = useImage()
   const images = [
     require("../../assets/p1.jpg"),
     require("../../assets/web.webp"),
@@ -58,16 +62,23 @@ const HomeScreen = ({ navigation }) => {
 
  
   return (
-    <ImageBackground source={require("../../assets/bg2.png")}>
+    <ImageBackground source={require("../../assets/bckg2.jpg")}>
       {/* Header */}
       <StatusBar style="auto" />
       <View style={styles.header}>
         <Ionicons name="ios-menu" size={30} color="black" />
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={require("../../assets/svg.png")}
-          />
+          {imageUrl ? (
+            <Image
+              source={{ uri: imageUrl }}
+              style={{ width: 55, height: 55 , borderRadius:50}}
+            />
+          ) : (
+            <Image
+              style={{ width: 50, height: 50 }}
+              source={require("../../assets/svg.png")}
+            />
+          )}
         </TouchableOpacity>
       </View>
       <ScrollView>
@@ -175,41 +186,53 @@ const HomeScreen = ({ navigation }) => {
 
         <Text style={styles.heroText}>Get Online Lecture</Text>
         <View style={styles.LectCard}>
-        <View>
-          <Image style={{width:50, height:50}} source={require("../../assets/vlogo.png")}/>
+          <View>
+            <Image
+              style={{ width: 50, height: 50 }}
+              source={require("../../assets/vlogo.png")}
+            />
+          </View>
+          <View style={{ paddingHorizontal: 18 }}>
+            <Text style={{ fontSize: 15, fontWeight: "400" }}>
+              Lecture Screen
+            </Text>
+            <Text
+              style={{
+                color: "#49688D",
+                fontSize: 15,
+                fontWeight: "400",
+                paddingVertical: 10,
+              }}
+            >
+              Link will disabled in 1 hours
+            </Text>
+          </View>
         </View>
-        <View style={{paddingHorizontal:18}}>
-          <Text style={{fontSize: 15, fontWeight: "400" }}>Lecture Screen</Text>
-          <Text style={{ color: "#49688D", fontSize: 15, fontWeight: "400" ,paddingVertical:10 }}>
-           Link will disabled in 1 hours
-          </Text>
-          </View>
-          </View>
-          {linkValid ?
-          <TouchableOpacity style={styles.WatchBtn} onPress={()=> Linking.openURL(url)}>
+        {linkValid ? (
+          <TouchableOpacity
+            style={styles.WatchBtn}
+            onPress={() => Linking.openURL(url)}
+          >
             <Text>Watch lecture </Text>
           </TouchableOpacity>
-          : <Text style={{color:"red"}}> The link is expired</Text>
-
-          }
-        
+        ) : (
+          <Text style={{ color: "red" }}> The link is expired</Text>
+        )}
 
         {/* About the Institute */}
         <View style={styles.about}>
           <Text style={styles.aboutTitle}>About Us</Text>
-          {/* Add institute description and instructor info */}
+          <AdminAbout/>
         </View>
 
-        {/* Testimonials and Reviews */}
+ 
         <View style={styles.testimonials}>
-          {/* Add student testimonials */}
+         
         </View>
 
-        {/* Footer */}
+      
         <View style={styles.footer}>
-          {/* Contact Information */}
-          {/* Social Media Links */}
-          {/* Quick Links */}
+         
         </View>
       </ScrollView>
     </ImageBackground>
@@ -288,7 +311,8 @@ const styles = StyleSheet.create({
   },
   about: {
     paddingHorizontal: 16,
-    marginTop: 24,
+    marginTop: 18,
+    marginBottom:18
   },
   aboutTitle: {
     fontSize: 20,

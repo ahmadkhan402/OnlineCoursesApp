@@ -14,18 +14,19 @@ import {
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FontAwesome } from "@expo/vector-icons";
-import {  auth} from "../../Firebase";
+import {  auth, db} from "../../Firebase";
 import { colorbg } from "../../DataBase"; 
-
+import { updateDoc, serverTimestamp, doc, setDoc, documentId } from "firebase/firestore";
 
 export default function SignupScreen({ navigation }) {
   //Hooks
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [displayName, setName] = useState("");
   const [RepeatPass, setRPassword] = useState("");
+  const [CheckPass, SetCheck] = useState(false);
 
-
+ 
   // const handleGoogleLogin = (response)=>{
   //     // Build Firebase credential with the Google ID token.
   //     const idToken = response.credential;
@@ -45,29 +46,45 @@ export default function SignupScreen({ navigation }) {
     
   // }
 
+async function  DaTaStore(){
 
+const docRef = doc(db, 'Names/',auth.currentUser.uid);
+await setDoc(docRef, {
+  displayName,
+ 
+});
+// Update the timestamp field with the value from the server
+console.log("DAta is saved to fireStore")
+}
 const  handleSignUp =()=>{
+  if(Password === RepeatPass){
+    // SetCheck(true)
+    
 createUserWithEmailAndPassword(auth, Email, Password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    if(user){
-      navigation.navigate("Login")
-    }
+.then((userCredential) => {
+  // Signed in 
+  const user = userCredential.user;
+  if(user){
+    navigation.navigate("Login")
+  }
+  DaTaStore()
+  // ...
+})
+.catch((error) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  Alert.alert(errorMessage)
+  // ..
+});
+  }else{
+    Alert.alert("Password not Same")
+  }
 
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    Alert.alert(errorMessage)
-    // ..
-  });
 }
   return (
     <ImageBackground
       style={styles.container}
-      source={require("../../assets/bg1.png")}
+      source={require("../../assets/bckg1.jpg")}
     >
       <View style={styles.miniContainer}>
         <StatusBar style="auto" />

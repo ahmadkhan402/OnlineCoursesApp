@@ -20,6 +20,7 @@
     "@react-navigation/native-stack": "^6.9.13",
     "deprecated-react-native-prop-types": "^4.2.1",
     "expo": "~49.0.7",
+    "expo-file-system": "~15.4.3",
     "expo-image-picker": "~14.3.2",
     "expo-linking": "~5.0.2",
     "expo-status-bar": "~1.6.0",
@@ -32,7 +33,6 @@
     "react-native-apple-card-views": "^3.0.0",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-dynamic-vector-icons": "^1.3.0",
-    "react-native-fetch-blob": "^0.10.8",
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.12.1",
     "react-native-image-slider-box": "^2.0.7",
@@ -48,9 +48,7 @@
     "react-native-star-rating": "^1.1.0",
     "react-native-web": "^0.19.8",
     "react-native-youtube": "^2.0.2",
-    "rn-fetch-blob": "^0.12.0",
-    "whatwg-fetch": "^3.6.17",
-    "expo-file-system": "~15.4.3"
+    "whatwg-fetch": "^3.6.17"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View,StyleSheet, Text, Button, TextInput, Image, TouchableOpacity,ImageBackground, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { db, storage } from '../../Firebase';
+import { auth, db, storage } from '../../Firebase';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { AntDesign } from '@expo/vector-icons';
 import { colorbg } from '../../DataBase';
+import { useImage } from '../Context/ImageProvider';
 
 
 const EditProfile = ({navigation}) => {
@@ -14,7 +15,7 @@ const EditProfile = ({navigation}) => {
   const [imageX, setImage] = useState("");
   const [BlobImage, setBlobImage] = useState('');
   const [ImageUrl, setImageUrl] = useState('');
-
+  const { setImageUrls } = useImage();
  
 
   useEffect(() => {
@@ -39,8 +40,9 @@ const EditProfile = ({navigation}) => {
     if (!result.canceled) {
       console.log("this is image link",result.assets[0].uri)
       setImage(result.assets[0].uri);
-      const url = result.assets[0].uri
       
+      const url = result.assets[0].uri
+      setImageUrls(url);
       
       function urlToBlob(url) {
         return new Promise((resolve, reject) => {
@@ -126,7 +128,7 @@ uploadTask.on('state_changed',
     // const imageUrl = await getDownloadURL(imageRef);
     //   console.log("this is image url",imageUrl)
     // Save user data to Firestore
-    const userRef = doc(db, 'users', displayName);
+    const userRef = doc(db, 'Names', auth.currentUser.uid);
     await setDoc(userRef, {
       displayName,
       phoneNumber,
@@ -138,7 +140,7 @@ uploadTask.on('state_changed',
   };
 
   return (
-    <ImageBackground source={require("../../assets/bg2.png")} style={{ flex: 1 , justifyContent:"center", alignItems:"center"}}>
+    <ImageBackground source={require("../../assets/bckg2.jpg")} style={{ flex: 1 , justifyContent:"center", alignItems:"center"}}>
       <View>
       <View>
         {imageX ? (

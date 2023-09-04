@@ -12,7 +12,7 @@ const FrontPage = () => {
   return (
     <ImageBackground style={styles.container} 
     
-    source={require("./../../assets/bg2.png")}>
+    source={require("./../../assets/bckg2.jpg")}>
     <StatusBar style="auto" />
     <View style={styles.textfield}>
    <Image style={{width:160,height:160}} source={require("./../../assets/logo.png")} />

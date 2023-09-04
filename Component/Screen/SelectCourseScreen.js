@@ -8,7 +8,7 @@ import { colorbg } from '../../DataBase'
 const SelectCourseScreen = () => {
     const naviagtion = useNavigation()
   return (
-    <ImageBackground style={{flex:1,justifyContent:"center"}} source={require("../../assets/bg1.png")}>
+    <ImageBackground style={{flex:1,justifyContent:"center"}} source={require("../../assets/bckg1.jpg")}>
     <View style={{paddingHorizontal:16}}>
     <Text style={styles.heroText} >Select The Course</Text>
         <TouchableOpacity style={styles.ButtonStyle} onPress={()=>{naviagtion.navigate("LecJava")}}>

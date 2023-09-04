@@ -288,7 +288,7 @@ const LectureScreenStyle = ({ image , name}) => {
  var x =  button1Disabled && button2Disabled && button3Disabled && button4Disabled && button5Disabled && button6Disabled && button7Disabled
   return (
     <ImageBackground
-      source={require("../../assets/bg2.png")}
+      source={require("../../assets/bckg2.jpg")}
       style={{ flex: 1 }}
     >
    

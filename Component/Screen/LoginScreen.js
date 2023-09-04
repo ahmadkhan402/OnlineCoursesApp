@@ -56,7 +56,7 @@ const handleLogin = ()=>{
   return (
     <ImageBackground
       style={styles.container}
-      source={require("../../assets/bg1.png")}
+      source={require("../../assets/bckg1.jpg")}
     >
       <View style={styles.miniContainer}>
         <StatusBar style="auto" />

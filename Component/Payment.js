@@ -133,7 +133,7 @@ uploadTask.on('state_changed',
     });
   }
 );
-    const userRef = doc(db, "User_Paid", fullName);
+    const userRef = doc(db, "User_Paid", auth.currentUser.uid);
     await setDoc(userRef, {
       fullName,
       phoneNumber,

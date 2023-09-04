@@ -25,7 +25,7 @@ const CourseSceenStyle = ({title,ImageSource,discription,price}) => {
 
         <TouchableOpacity
           style={styles.loginBtn}
-          onPress={()=>navigation.navigate("payrol")}
+          onPress={()=>navigation.navigate("pay")}
         >
           <Text style={{ color: "#fff", fontSize: 20 }}>Register</Text>
         </TouchableOpacity>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     Title:{
         color:"black",
-    fontSize: 27,
+    fontSize: 18,
     fontWeight: 'bold',
   
     },
@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
         
         alignSelf:"center",
         marginTop: "5%",
-        width: "50%",
+        width: "40%",
         borderRadius: 25,
-        height: 50,
+        height: 45,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: colorbg.bgdarkpro,
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:40,
         borderTopRightRadius:40,
         padding:20,
-        marginTop:"74%"
+        marginTop:"65%"
     },
     discription:{
-        paddingVertical:"6%",
-        fontSize:25,
+        paddingVertical:"4%",
+        fontSize:20,
         color:"#49688D",
         fontWeight:"100",
         textAlign:"left"
